@@ -49,9 +49,10 @@ var vars = {
                     emitters[1].start();
                 } else {
                     pV.currentlyRunning='infinity';
-                    if (pV.currentColour==='red') { pV.currentColour='blue'; } else { pV.currentColour='red'; }
-                    emitters[1].setFrame(pV.currentColour).stop();
-                    emitters[0].setFrame(pV.currentColour).start();
+                    let newColour = pV.currentColour.splice(0,1);
+                    pV.currentColour.push(newColour);
+                    emitters[1].setFrame(newColour).stop();
+                    emitters[0].setFrame(newColour).start();
                 }
             })
         }
@@ -88,7 +89,7 @@ var vars = {
     particles: {
         available: [],
         currentlyRunning: 'infinity',
-        currentColour: 'red',
+        currentColour: ['red','blue','white'],
 
         init: ()=> {
             let pV = vars.particles;
@@ -96,7 +97,7 @@ var vars = {
             pV.available.infinity = scene.add.particles('flares');
 
             vars.particles.available.infinity.createEmitter({
-                frame: 'red',
+                frame: pV.currentColour[2],
                 x: 1920/2,
                 y: 1080/2,
                 scale: { start: 1, end: 0 },
@@ -106,7 +107,7 @@ var vars = {
             });
 
             vars.particles.available.infinity.createEmitter({
-                frame: 'red',
+                frame: pV.currentColour[2],
                 x: 1920/2,
                 y: 1080/2,
                 lifespan: 2000, quantity: 1,

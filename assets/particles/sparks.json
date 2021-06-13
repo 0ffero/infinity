@@ -41,6 +41,27 @@
 				"w": 64,
 				"h": 64
 			}
+		},
+		{
+			"filename": "white",
+			"frame": {
+				"x": 1,
+				"y": 67,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
 		}
 	],
 	"meta": {
