@@ -57,13 +57,43 @@ var vars = {
         }
     },
 
+    phaserObject: {
+        infinity: {
+            getRandomPoint: function (vec) {
+                let x; let y; let pixel;
+                do {
+                    x = Phaser.Math.Between(0, 533);
+                    y = Phaser.Math.Between(0, 237);
+                    pixel = scene.textures.getPixel(x, y, 'ib', 'infinity');
+                } while (pixel.alpha < 255);
+
+                return vec.setTo(x,y);
+            }
+        },
+
+        beauty: {
+            getRandomPoint: function (vec) {
+                let x; let y; let pixel;
+                do {
+                    x = Phaser.Math.Between(0, 513);
+                    y = Phaser.Math.Between(0, 231);
+                    pixel = scene.textures.getPixel(x, y, 'ib', 'beauty');
+                } while (pixel.alpha < 255);
+
+                return vec.setTo(x,y);
+            }
+        }
+    },
+
     particles: {
         available: [],
         currentlyRunning: 'infinity',
         currentColour: 'red',
 
         init: ()=> {
-            vars.particles.available.infinity = scene.add.particles('flares');
+            let pV = vars.particles;
+            pV.letterSparklesInit();
+            pV.available.infinity = scene.add.particles('flares');
 
             vars.particles.available.infinity.createEmitter({
                 frame: 'red',
@@ -84,6 +114,28 @@ var vars = {
                 blendMode: 'ADD',
                 emitZone: { type: 'edge', source: vars.graphics.infinitySmooth },
                 on: false
+            });
+        },
+
+        letterSparklesInit: ()=> {
+            vars.particles.available.letterSparkle = scene.add.particles('flares');
+
+            vars.particles.available.letterSparkle.createEmitter({
+                x: vars.canvas.cX-533/2, y: vars.canvas.cY-500,
+                quantity: 30, lifespan: 666, gravityY: 1,
+                scale: { start: 0, end: 0.5, ease: 'Quad.easeOut' },
+                alpha: { start: 1, end: 0, ease: 'Quad.easeIn' },
+                blendMode: 'ADD',
+                emitZone: { type: 'random', source: vars.phaserObject.infinity }
+            });
+
+            vars.particles.available.letterSparkle.createEmitter({
+                x: vars.canvas.cX-513/2, y: vars.canvas.cY+300,
+                quantity: 30, lifespan: 666, gravityY: 1,
+                scale: { start: 0, end: 0.5, ease: 'Quad.easeOut' },
+                alpha: { start: 1, end: 0, ease: 'Quad.easeIn' },
+                blendMode: 'ADD',
+                emitZone: { type: 'random', source: vars.phaserObject.beauty }
             });
         }
     }

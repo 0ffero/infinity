@@ -21,6 +21,7 @@ function preload () {
     scene = this;
     scene.load.setPath('assets');
     scene.load.atlas('flares', 'particles/sparks.png', 'particles/sparks.json');
+    scene.load.atlas('ib', 'images/ib.png', 'images/ib.json');
 }
 
 function create (){
