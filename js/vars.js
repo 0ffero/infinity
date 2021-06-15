@@ -1,6 +1,6 @@
 var scene;
 var vars = {
-    version: 0.1,
+    version: 1.0,
     canvas: {
         width: 1920, height: 1080, cX: 1920/2, cY: 1080/2,
     },
@@ -41,7 +41,7 @@ var vars = {
     input: {
         init: ()=> {
             scene.input.on('pointerdown', function (pointer) {
-                let pV = vars.particles;
+                /* let pV = vars.particles;
                 let emitters = pV.available.infinity.emitters.list;
                 let ibemitters = pV.available.letterSparkle.emitters.list;
                 if (pV.currentlyRunning==='infinity') {
@@ -57,7 +57,7 @@ var vars = {
 
                     ibemitters[0].setFrame(newColour);
                     ibemitters[1].setFrame(newColour);
-                }
+                } */
             })
         }
     },
@@ -106,7 +106,7 @@ var vars = {
                 quantity: 2,
                 scale: { start: 1, end: 0 },
                 blendMode: 'ADD',
-                emitZone: { type: 'edge', source: vars.graphics.infinity, quantity: 128 },
+                emitZone: { type: 'edge', source: vars.graphics.infinity, quantity: 256 },
                 on: true
             });
 
@@ -126,7 +126,7 @@ var vars = {
             pV.available.letterSparkle = scene.add.particles('flares');
 
             pV.available.letterSparkle.createEmitter({
-                x: vars.canvas.cX-533/2, y: vars.canvas.cY-500,
+                x: vars.canvas.cX-533/2, y: vars.canvas.cY-450,
                 frame: pV.currentColour[2],
                 quantity: 30, lifespan: 666, gravityY: 1,
                 scale: { start: 0, end: 0.5, ease: 'Quad.easeOut' },
@@ -136,7 +136,7 @@ var vars = {
             });
 
             pV.available.letterSparkle.createEmitter({
-                x: vars.canvas.cX-521/2, y: vars.canvas.cY+300,
+                x: vars.canvas.cX-521/2, y: vars.canvas.cY+250,
                 frame: pV.currentColour[2],
                 quantity: 30, lifespan: 666, gravityY: 1,
                 scale: { start: 0, end: 0.5, ease: 'Quad.easeOut' },
